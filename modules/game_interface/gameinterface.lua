@@ -309,6 +309,12 @@ function onGameStart()
     show()
     updateSidePanelButtons()
     applyMobileMargins()
+	
+	gameMapPanel:setZoom(17)
+	gameMapPanel:setVisibleDimension({
+		width = 21,
+		height = 17
+	})
 end
 
 function onGameEnd()
@@ -502,9 +508,9 @@ end
 function updateStretchShrink()
     if modules.client_options.getOption('dontStretchShrink') and not alternativeView then
         gameMapPanel:setVisibleDimension({
-            width = 15,
-            height = 11
-        })
+			width = 21,
+			height = 17
+		})
 
         -- Set gameMapPanel size to height = 11 * 32 + 2
         bottomSplitter:setMarginBottom(bottomSplitter:getMarginBottom() + (gameMapPanel:getHeight() - 32 * 11) - 10)
@@ -1823,27 +1829,36 @@ function setupViewMode(mode)
     if mode == 0 then
         gameMapPanel:setKeepAspectRatio(true)
         gameMapPanel:setLimitVisibleRange(false)
+		--[[
+		default values
         gameMapPanel:setZoom(11)
         gameMapPanel:setVisibleDimension({
             width = 15,
             height = 11
         })
+		]]--
+		
+		gameMapPanel:setZoom(17)
+		gameMapPanel:setVisibleDimension({
+			width = 21,
+			height = 17
+		})
     elseif mode == 1 then
         gameMapPanel:setKeepAspectRatio(false)
         gameMapPanel:setLimitVisibleRange(true)
-        gameMapPanel:setZoom(11)
-        gameMapPanel:setVisibleDimension({
-            width = 15,
-            height = 11
-        })
+        gameMapPanel:setZoom(17)
+		gameMapPanel:setVisibleDimension({
+			width = 21,
+			height = 17
+		})
     elseif mode == 2 then
         local limit = limitedZoom and not g_game.isGM()
         gameMapPanel:setLimitVisibleRange(limit)
-        gameMapPanel:setZoom(11)
-        gameMapPanel:setVisibleDimension({
-            width = 15,
-            height = 11
-        })
+        gameMapPanel:setZoom(17)
+		gameMapPanel:setVisibleDimension({
+			width = 21,
+			height = 17
+		})
         gameMapPanel:fill('parent')
         gameRootPanel:fill('parent')
         gameLeftPanel:setImageColor('alpha')
